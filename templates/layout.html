@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <base href="{{ app_root }}">
+        <meta charset="utf-8">
+        <title>eAnthro Community Lab</title>
+
+        <link rel="stylesheet" href="www/css/base.css">
+        <link rel="stylesheet" href="www/css/style.css">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Vollkorn&subset=latin' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Cantarell:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
+        <!--
+        <script src="/www/js/jquery.js"></script>
+        <script src="/www/js/jquery-ui.js"></script>
+        -->
+        <script src="www/js/script.js"></script>
+
+    </head>
+    <body>
+        <div id="wordmark">
+            <div id="universityTextWordMark">
+                <a href="http://www.utexas.edu" id="ut">THE UNIVERSITY OF TEXAS AT AUSTIN</a>
+                <a href="http://www.utexas.edu/cola/depts/anthropology" id="dept">DEPARTMENT OF ANTHROPOLOGY</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="container">
+            <div id="header">
+                <h1><a href="/">eAnthro Community Labs</a></h1>
+                {% if user %}
+                {{ user.nickname }} | <a href="{{ logout_url|escape }}">Sign out</a>
+                {% else %}
+                <a href="{{ login_url|escape }}">Sign in</a>
+                {% endif %}
+            </div>
+            <div id="main">
+                {% if msg %}<h3 class="msg">{{ msg }}</h3>{% endif %}
+                {% block content %}default content{% endblock %}
+            </div>
+            <div class="clear"></div>
+            <div id="footer">
+                <div class="brand">
+                    <a href="http://eskeletons.org">eSkeletons</a> |
+                    <a href="http://elucy.org">eLucy.org</a> |
+                    <a href="http://www.laits.utexas.edu/its/"><strong>Liberal Arts</strong> Instructional Technology Services</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

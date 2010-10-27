@@ -1,0 +1,169 @@
+body {
+	background-color: #eee;
+	font-family: 'Cantarell', arial, serif;
+	font-size: 15px;
+}
+
+p {
+	margin: 10px 0;
+}
+
+#wordmark {
+	margin-top: -5px;
+	text-align: center;
+	border-bottom: 0px solid #ddd;
+	padding-bottom: 8px;
+}
+
+#universityTextWordMark {
+	margin: 0px auto;
+	width: 600px;
+	padding: 9px;
+}
+
+#ut { 
+	color: #850;
+	float: left;
+	letter-spacing: 1px;
+	margin-left: 0px;
+	margin-top: 5px;
+	font-size: 14px;
+	font-family: 'Vollkorn', arial, serif;
+}
+
+#dept:first-letter  { 
+	font-size: 15px;
+}
+
+#dept  { 
+	color: #889;
+	font-weight: bold;
+	float: right;
+	letter-spacing: -1px;
+	margin-right: 0px;
+	margin-top:2px;
+	font-size: 13px;
+	font-family: 'Cantarell', arial, serif;
+}
+
+div#container {
+	margin: 0px auto;
+	width: 600px;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Neuton', arial, serif;
+}
+
+h3.msg {
+	color: #900;
+	margin: 10px 0 0 0;
+}
+
+div#header {
+	background-color: #e3e3e3;
+	color: #000;
+	margin: -4px 0px 2px 0px;
+	padding: 10px 15px;
+}
+
+div#header h1 {
+	font-size: 30px;
+	font-weight: normal;
+}
+
+div#header h1 a {
+	color: #4e2e28;
+}
+
+div#header a.delete {
+	color:#c00;
+}
+
+div#main {
+	margin 0;
+	background-color: #fff;
+	padding: 15px;
+}
+
+#footer {
+	margin: 6px 0;
+} 
+
+#footer div.brand {
+	padding: 10px 15px;
+	color: #999;
+}
+#footer a {
+	font-weight: bold;
+	color:#4e2e28;
+}
+ul {
+	margin: 10px 0;
+}
+
+li  {
+	margin: 5px 0;
+}
+
+
+input.delete {
+	float: right;
+	margin-right: 0px;
+}
+
+input.delete:hover {
+	background-color: #c00;
+	color: #fff;
+}
+
+div.controls {
+	float: right;
+	margin: 6px 0;
+}
+
+dl {
+	margin: 10px 0;
+}
+dt {
+	background-color: #eee;
+	float: left; 
+	width: 140px; 
+	text-align: right; 
+	font-weight: bold; 
+	padding: 2px 10px;
+	margin-bottom: 2px;
+	color: #666; 
+}
+dd { 
+	margin: 0 0 2px 160px; 
+	padding: 2px 10px; 
+	min-height: 20px;
+}
+
+ol {
+	margin: 15px 0px;
+	margin-right: 30px;
+}
+
+ol li {
+	margin: 0px;
+}
+
+table#data_form {
+	margin: 20px 0;
+}
+
+#data_form th {
+	font-size: 10px;
+	padding: 2px 5px;
+}
+
+#data_form td {
+	padding: 2px 5px;
+	text-align: center;
+}
+
+#data_form input[type="text"] {
+	width: 50%;
+}

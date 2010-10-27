@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Items</h1>
+<form action="items" method="post">
+    <p>
+	<label for="name">name</label>
+	<input type="text" name="name">
+	<label for="text">text</label>
+    <textarea name="text"></textarea>
+    </p>
+    <p>
+	<input type="submit" value="add">
+    </p>
+</form>
+<dl id="itemsList">
+{% for item in items %}
+<dt>{{ item.name }}</dt>
+<dd>{{ item.text }}
+<a href="item/{{ item.key }}" class="delete">[X]</a>
+</dd>
+{% endfor %}
+</dl>
+{% endblock %}
+
