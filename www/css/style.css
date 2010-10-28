@@ -165,5 +165,9 @@ table#data_form {
 }
 
 #data_form input[type="text"] {
-	width: 50%;
+	width: 70%;
+}
+form input[type="submit"] {
+	font-weight: bold;
+	color: #666;
 }
