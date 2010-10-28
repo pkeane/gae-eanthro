@@ -22,21 +22,20 @@ from google.appengine.ext.webapp.util import login_required
 # Set to true if we want to have our webapp print stack traces, etc
 _DEBUG = True
 
-def create_openid_url(continue_url):
-    #continue_url = urlparse.urljoin(request.url, continue_url)
-    return "/_ah/login_required?continue=%s" % urllib.quote(continue_url)
-
 def rfc3339():
     """
     Format a date the way Atom likes it (RFC3339)
     """
     return time.strftime('%Y-%m-%dT%H:%M:%S%z')
 
-class Item(db.Model):
-  name = db.StringProperty(required=True)
-  text = db.TextProperty()
+class PersonData(db.Model):
+  gender = db.StringProperty(required=True)
+  age = db.IntegerProperty(required=True)
+  foot_length = db.IntegerProperty(required=True)
+  height = db.IntegerProperty(required=True)
+  stride_length = db.IntegerProperty(required=False)
   created = db.DateTimeProperty(auto_now_add=True)
-  updated = db.DateTimeProperty(auto_now=True)
+  created_by = db.UserProperty(required=True) 
 
 class BaseRequestHandler(webapp.RequestHandler):
   """Supplies a common template generation function.
@@ -54,7 +53,7 @@ class BaseRequestHandler(webapp.RequestHandler):
       'app_root': 'http://' + self.request.host + '/',
       'debug': self.request.get('deb'),
       'msg': self.request.get('msg'),
-      'application_name': 'meta-box',
+      'application_name': 'eanthro',
     }
     values.update(template_values)
     directory = os.path.dirname(__file__)
@@ -93,8 +92,8 @@ class IndexHandler(BaseRequestHandler):
 
 class ItemHandler(BaseRequestHandler):
   def delete(self,key=''):
-      item = Item.get(key);
-      item.delete()
+      pd = PersonData.get(key);
+      pd.delete()
   def get(self,key=''):
       item = Item.get(key);
       self.response.headers['Content-Type'] = 'application/json'
@@ -108,9 +107,31 @@ class FootprintsHandler(BaseRequestHandler):
 
 class FootprintsFormHandler(BaseRequestHandler):
   def get(self,key=''):
-      self.generate('footprints_form.html')
+      cache=False
+      items = db.GqlQuery(
+              "SELECT * from PersonData " +
+              "WHERE created_by = :1 " + 
+              "ORDER BY created",users.GetCurrentUser())
+      self.generate('footprints_form.html', {
+          'items': items,
+      })
   def post(self):
-      self.redirect('/exercise/footprints/graph')
+      gender = self.request.get('gender')
+      age = int(self.request.get('age'))
+      foot_length = int(self.request.get('foot_length'))
+      stride_length = int(self.request.get('stride_length'))
+      height = int(self.request.get('height'))
+      if (gender and age and foot_length and height):
+          pd = PersonData(
+                  created_by = users.GetCurrentUser(),
+                  gender=gender,
+                  age=age,
+                  foot_length=foot_length,
+                  stride_length=stride_length,
+                  height=height
+                  )
+          pd.put()
+      self.redirect('/exercise/footprints/form')
 
 class FootprintsGraphHandler(BaseRequestHandler):
   def get(self,key=''):

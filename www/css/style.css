@@ -76,7 +76,7 @@ div#header h1 a {
 	color: #4e2e28;
 }
 
-div#header a.delete {
+a.delete {
 	color:#c00;
 }
 
@@ -152,6 +152,7 @@ ol li {
 
 table#data_form {
 	margin: 20px 0;
+    border-collapse: collapse;
 }
 
 #data_form th {
@@ -162,6 +163,7 @@ table#data_form {
 #data_form td {
 	padding: 2px 5px;
 	text-align: center;
+    border: 1px solid #ccc;
 }
 
 #data_form input[type="text"] {
