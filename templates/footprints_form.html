@@ -1,40 +1,52 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Footprints Exercise: Data Entry</h2>
-<form method="post" action="/exercise/footprints/form">
-	<table id="data_form">
+<h2>Footprints Exercise: Data Set "{{ data_set.name }}"</h2>
+<form id="data_form" method="post">
+	<table>
 		<tr>
 			<th>Gender</th>
-			<th>Age</th>
+			<th class="age">Age</th>
 			<th>Foot Length (cm)</th>
 			<th>Height (cm)</th>
 			<th>Stride Length (cm)</th>
 			<th></th>
 		</tr>
 		<tr>
-			<td>
+			<th class="gender">
+                <input type="radio" name="gender" value="female"><span class="radiolabel">F</span> 
+                <input type="radio" name="gender" value="male"><span class="radiolabel">M </span>
+                <!--
 				<select name="gender">
 					<option>choose:</option>
 					<option>female</option>
 					<option>male</option>
 				</select>
-			</td>
-			<td>
+                -->
+			</th>
+			<th class="age">
 				<input type="text" name="age"> 
-			</td>
-			<td>
+			</th>
+			<th>
 				<input type="text" name="foot_length"> 
-			</td>
-			<td>
+			</th>
+			<th>
 				<input type="text" name="height"> 
-			</td>
-			<td>
+			</th>
+			<th>
 				<input type="text" name="stride_length"> 
-			</td>
-			<td>
-				<input type="submit" value="submit data"> 
-			</td>
+			</th>
+			<th>
+				<input type="submit" value="submit!"> 
+			</th>
+		</tr>
+		<tr class="spacer">
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
         {% for item in items %}
         <tr>
@@ -42,7 +54,7 @@
         <td>{{ item.age }}</td>
         <td>{{ item.foot_length }}</td>
         <td>{{ item.height }}</td>
-        <td>{{ item.stride_length }}</td>
+        <td>{% if stride_length %}{{ item.stride_length }}{% endif %}</td>
         <td>
             <a href="item/{{ item.key }}" class="delete">[x]</a>
         </td>

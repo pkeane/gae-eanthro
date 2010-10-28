@@ -2,6 +2,7 @@ var Dase = {};
 
 $(document).ready(function() {
 	Dase.initDelete('data_form');
+	Dase.validateDataForm();
 	Dase.initFormDelete();
 });
 
@@ -12,6 +13,24 @@ Dase.initToggle = function(id) {
 		$('#'+tar).toggle();
 		return false;
 	});	
+};
+
+Dase.validateDataForm = function() {
+  $("form").submit( function() {
+    var set = $(this).serializeArray();
+    form_obj = {};
+    for (var i=0; i<set.length;i++) {
+      var elements = ['gender','age','foot_length','height','stride_length'];
+      for (var n in elements) {
+        el = elements[n];
+        if (el == set[i].name) {
+          form_obj[el] = set[i].value;
+        }
+      }
+    }
+    alert(jQuery.param(form_obj));
+    return false;
+  });
 };
 
 Dase.initFormDelete = function() {

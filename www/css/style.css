@@ -17,7 +17,7 @@ p {
 
 #universityTextWordMark {
 	margin: 0px auto;
-	width: 600px;
+	width: 700px;
 	padding: 9px;
 }
 
@@ -48,7 +48,7 @@ p {
 
 div#container {
 	margin: 0px auto;
-	width: 600px;
+	width: 700px;
 }
 
 h1, h2, h3, h4 {
@@ -150,14 +150,19 @@ ol li {
 	margin: 0px;
 }
 
-table#data_form {
+#data_form  table {
 	margin: 20px 0;
     border-collapse: collapse;
 }
 
+#data_form tr.spacer {
+    height: 30px;
+}
+
 #data_form th {
-	font-size: 10px;
-	padding: 2px 5px;
+	font-size: 11px;
+	padding: 4px 2px;
+    border: 0px solid #ccc;
 }
 
 #data_form td {
@@ -166,10 +171,42 @@ table#data_form {
     border: 1px solid #ccc;
 }
 
+#data_form th.age {
+    width: 40px;
+    padding-left: 0px;
+}
+
+#data_form th.gender {
+    width: 90px;
+    padding-left: 0px;
+}
+
+#data_form th.gender input {
+    margin-left: 10px;
+}
+
 #data_form input[type="text"] {
-	width: 70%;
+	width: 60%;
 }
 form input[type="submit"] {
 	font-weight: bold;
 	color: #666;
+}
+
+span.radiolabel {
+    font-size: 80%;
+    font-weight: bold;
+    vertical-align: sub;
+}
+
+label {
+  display: block;
+}
+
+form.create_set {
+  margin: 20px 0;
+}
+
+form.create_set input[type="text"] {
+  width: 400px;
 }

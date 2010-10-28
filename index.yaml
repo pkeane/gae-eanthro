@@ -10,7 +10,17 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: DataSet
+  properties:
+  - name: created_by
+  - name: created
+
 - kind: PersonData
   properties:
   - name: created_by
+  - name: created
+
+- kind: PersonData
+  properties:
+  - name: data_set
   - name: created

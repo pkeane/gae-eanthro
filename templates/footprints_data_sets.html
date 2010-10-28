@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Footprints Exercise: Data Sets</h2>
+<form class="create_set" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name"> 
+  <input type="submit" value="create set"> 
+</form>
+<h3>My Data Sets</h3>
+<ul>
+  {% for data_set in sets %}
+  <li><a href="exercise/footprints/data_set/{{data_set.key }}">{{ data_set.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
