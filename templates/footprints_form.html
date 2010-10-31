@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 
+{% block head-links %}
+<link rel="data_set" type="application/json" href="{{ app_root }}exercise/footprints/data_set/{{ data_set.key }}.json">
+{% endblock %}
+
+{% block head-scripts %}
+<script src="www/js/htmlbuilder.js"></script>
+{% endblock %}
+
 {% block content %}
 <h2>Footprints Exercise: Data Set "{{ data_set.name }}"</h2>
 <form id="data_form" method="post">
-	<table>
+	<table id="data_form_table">
 		<tr>
 			<th>Gender</th>
 			<th class="age">Age</th>
@@ -16,13 +24,6 @@
 			<th class="gender">
                 <input type="radio" name="gender" value="female"><span class="radiolabel">F</span> 
                 <input type="radio" name="gender" value="male"><span class="radiolabel">M </span>
-                <!--
-				<select name="gender">
-					<option>choose:</option>
-					<option>female</option>
-					<option>male</option>
-				</select>
-                -->
 			</th>
 			<th class="age">
 				<input type="text" name="age"> 
@@ -40,27 +41,9 @@
 				<input type="submit" value="submit!"> 
 			</th>
 		</tr>
-		<tr class="spacer">
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-        {% for item in items %}
-        <tr>
-        <td>{{ item.gender }}</td>
-        <td>{{ item.age }}</td>
-        <td>{{ item.foot_length }}</td>
-        <td>{{ item.height }}</td>
-        <td>{% if stride_length %}{{ item.stride_length }}{% endif %}</td>
-        <td>
-            <a href="item/{{ item.key }}" class="delete">[x]</a>
-        </td>
-        </tr>
-        {% endfor %}
 	</table>
+  <div id="data_table">
+	</div>
 </form>
 
 {% endblock %}

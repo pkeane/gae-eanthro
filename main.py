@@ -4,6 +4,8 @@ import datetime
 import os
 import random
 import re
+import json
+import simplejson
 import string
 import sys
 import urllib
@@ -66,46 +68,22 @@ class BaseRequestHandler(webapp.RequestHandler):
     path = os.path.join(directory, os.path.join('templates', template_name))
     self.response.out.write(template.render(path, values, debug=_DEBUG))
 
+class ItemHandler(BaseRequestHandler):
+  def delete(self,key=''):
+    pd = PersonData.get(key);
+    pd.delete()
+    self.response.out.write('deleted item '+key)
+    self.response.headers.add_header("Content-Type","text/plain")
+
 class HomeHandler(BaseRequestHandler):
   @login_required
   def get(self):
     user = users.GetCurrentUser()
     self.generate('home.html')
 
-class ItemsHandler(BaseRequestHandler):
-  """Lists the items """
-
-  @login_required
-  def get(self):
-    user = users.GetCurrentUser()
-    cache=False
-    items = db.GqlQuery("SELECT * from Item ORDER BY created")
-    self.generate('items.html', {
-        'items': items,
-        })
-
-  def post(self):
-    name = self.request.get('name')
-    text = self.request.get('text')
-    if (name and text):
-      item = Item(name=name,text=text)
-      item.put()
-    self.redirect('items')
-
 class IndexHandler(BaseRequestHandler):
   def get(self):
     self.generate('index.html')
-
-class ItemHandler(BaseRequestHandler):
-  def delete(self,key=''):
-    pd = PersonData.get(key);
-    pd.delete()
-  def get(self,key=''):
-    item = Item.get(key);
-    self.response.headers['Content-Type'] = 'application/json'
-    self.response.out.write(item.to_xml())
-  def put(self,key=''):
-    pass
 
 class FootprintsHandler(BaseRequestHandler):
   def get(self,key=''):
@@ -131,6 +109,27 @@ class FootprintsDataSetsHandler(BaseRequestHandler):
     set.put()
     self.redirect('/exercise/footprints/data_sets')
 
+class FootprintsDataSetJsonHandler(BaseRequestHandler):
+  def get(self,key=''):
+    data_set = DataSet.get(key);
+    cache=False
+    items = db.GqlQuery(
+          "SELECT * from PersonData " +
+          "WHERE data_set = :1 " + 
+          "ORDER BY created",data_set)
+    set = []
+    for item in items:
+      inner = {}
+      inner['gender'] = item.gender
+      inner['age'] = item.age
+      inner['foot_length'] = item.foot_length
+      inner['height'] = item.height
+      inner['stride_length'] = item.stride_length
+      inner['link'] = 'http://' + self.request.host + '/item/'+str(item.key()) 
+      set.append(inner)
+    self.response.out.write(json.encode(set))
+    self.response.headers.add_header("Content-Type","application/json")
+
 class FootprintsDataSetHandler(BaseRequestHandler):
   def get(self,key=''):
     data_set = DataSet.get(key);
@@ -140,9 +139,9 @@ class FootprintsDataSetHandler(BaseRequestHandler):
           "WHERE data_set = :1 " + 
           "ORDER BY created",data_set)
     self.generate('footprints_form.html', {
-        'data_set':data_set,
-        'items': items,
-        })
+      'data_set':data_set,
+      'items': items,
+      })
   def post(self,key=''):
     data_set = DataSet.get(key);
     gender = self.request.get('gender')
@@ -164,7 +163,10 @@ class FootprintsDataSetHandler(BaseRequestHandler):
           data_set=data_set
          )
       pd.put()
-    self.redirect('/exercise/footprints/data_set/'+str(data_set.key()))
+      self.response.out.write('added data')
+    else:
+      self.response.out.write('could not add data')
+    self.response.headers.add_header("Content-Type","text/plain")
 
 class FootprintsGraphHandler(BaseRequestHandler):
   def get(self,key=''):
@@ -173,9 +175,9 @@ class FootprintsGraphHandler(BaseRequestHandler):
 def main():
   application = webapp.WSGIApplication([
     ('/', HomeHandler),
-    ('/items', ItemsHandler),
     ('/item/(.*)', ItemHandler),
     ('/exercise/footprints', FootprintsHandler),
+    ('/exercise/footprints/data_set/(.*).json', FootprintsDataSetJsonHandler),
     ('/exercise/footprints/data_set/(.*)', FootprintsDataSetHandler),
     ('/exercise/footprints/data_sets', FootprintsDataSetsHandler),
     ('/exercise/footprints/graph', FootprintsGraphHandler),

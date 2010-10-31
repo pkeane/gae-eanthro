@@ -2,11 +2,21 @@ var Dase = {};
 Dase.forms = {};
 
 $(document).ready(function() {
-	Dase.initDelete('data_form');
 	Dase.initForms();
-	Dase.initFormValidation('data_form');
+	Dase.initDataSet();
+  Dase.initDataForm();
 	Dase.initFormDelete();
 });
+
+Dase.clearForm = function(id) {
+  //from http://stackoverflow.com/questions/680241/blank-out-a-form-with-jquery
+  $(':input','#'+id)
+    .not(':button, :submit, :reset, :hidden, :radio')
+    .val('');
+  $(':input','#'+id)
+    .removeAttr('checked')
+    .removeAttr('selected');
+};
 
 Dase.validator = function(id) {
 	this.id = id;
@@ -93,6 +103,32 @@ Dase.initForms = function() {
 	Dase.forms.data_form.add('Stride Length','stride_length',false,'float',10,150);
 }
 
+Dase.initDataSet = function() {
+  var json_o = {
+    'url': $('link[rel="data_set"]').attr('href'),
+    'dataType':'json',
+    'success': function(data) {
+      table = new Dase.htmlbuilder('table');
+      for (var i=0;i<data.length;i++) {
+        tr = table.add('tr');
+        var row = data[i];
+        td = tr.add('td',null,row.gender);
+        td = tr.add('td',null,row.age);
+        td = tr.add('td',null,row.foot_length);
+        td = tr.add('td',null,row.height);
+        td = tr.add('td',null,row.stride_length);
+        td = tr.add('td');
+        td.add('a',{'class':'delete','href':row.link},'[x]');
+      }
+      table.attach(document.getElementById('data_table'));
+      Dase.initDeletePersonData();
+    },
+    'error': function() {
+      alert('sorry, cannot retrieve data set');
+    }
+  };
+  $.ajax(json_o);
+}
 
 Dase.initToggle = function(id) {
 	$('#'+id).find('a[class="toggle"]').click(function() {
@@ -103,16 +139,31 @@ Dase.initToggle = function(id) {
 	});	
 };
 
-Dase.initFormValidation = function(id) {
-	var form = $("#"+id);
-	form.submit( function() {
-		var errors = Dase.forms[id].validate($(this));
+Dase.initDataForm = function() {
+  Dase.initForms();
+	$("#data_form").submit( function() {
+		var errors = Dase.forms.data_form.validate($(this));
 		if (errors) {
 			alert(errors);
 			Dase.initForms();
 			return false;
-		}
-	});
+    }
+    var post_o = {
+      'url': window.location.href,
+    'data':$(this).serialize(),
+    'type':'POST',
+    'success': function() {
+      Dase.initDataSet();
+			Dase.initForms();
+      Dase.clearForm('data_form');
+    },
+    'error': function() {
+      alert('sorry, there was an error');
+    }
+    };
+    $.ajax(post_o);
+    return false;
+  });
 };
 
 Dase.initFormDelete = function() {
@@ -123,6 +174,25 @@ Dase.initFormDelete = function() {
 				'type':'DELETE',
 				'success': function() {
 					location.reload();
+				},
+				'error': function() {
+					alert('sorry, cannot delete');
+				}
+			};
+			$.ajax(del_o);
+		}
+		return false;
+	});
+};
+
+Dase.initDeletePersonData = function() {
+	$('#data_form').find("a[class='delete']").click(function() {
+		if (confirm('are you sure?')) {
+			var del_o = {
+				'url': $(this).attr('href'),
+				'type':'DELETE',
+				'success': function() {
+          Dase.initDataSet();
 				},
 				'error': function() {
 					alert('sorry, cannot delete');

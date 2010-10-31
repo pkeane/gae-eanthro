@@ -7,17 +7,19 @@
 
         <link rel="stylesheet" href="www/css/base.css">
         <link rel="stylesheet" href="www/css/style.css">
+        {% block head-links %}{% endblock %}
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Vollkorn&subset=latin' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Cantarell:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
         <!--
         <script src="www/js/jquery.js"></script>
         <script src="www/js/jquery-ui.js"></script>
         -->
         <script src="www/js/script.js"></script>
+        {% block head-scripts %}{% endblock %}
 
     </head>
     <body>
@@ -32,7 +34,9 @@
             <div id="header">
                 <h1><a href="/">eAnthro Community Labs</a></h1>
                 {% if user %}
-                {{ user.nickname }} | <a href="{{ logout_url|escape }}">Sign out</a>
+                {{ user.nickname }} | 
+                <a href="exercise/footprints/data_sets">My Data Sets</a> |
+                <a href="{{ logout_url|escape }}">Sign out</a>
                 {% else %}
                 <a href="{{ login_url|escape }}">Sign in</a>
                 {% endif %}
