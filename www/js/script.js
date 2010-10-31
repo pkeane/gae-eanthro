@@ -104,8 +104,10 @@ Dase.initForms = function() {
 }
 
 Dase.initDataSet = function() {
+  var url = $('link[rel="data_set"]').attr('href');
+  if (!url) return;
   var json_o = {
-    'url': $('link[rel="data_set"]').attr('href'),
+    'url': url,
     'dataType':'json',
     'success': function(data) {
       table = new Dase.htmlbuilder('table');
