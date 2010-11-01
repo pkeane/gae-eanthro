@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 
 import datetime
+import json
+import matfunc
 import os
 import random
 import re
-import json
 import simplejson
 import string
 import sys
+import time
 import urllib
 import urlparse
 import wsgiref.handlers
-
-import time
 
 from google.appengine.api import urlfetch
 from google.appengine.api import users
@@ -112,7 +112,6 @@ class FootprintsDataSetsHandler(BaseRequestHandler):
 class FootprintsDataSetJsonHandler(BaseRequestHandler):
   def get(self,key=''):
     data_set = DataSet.get(key);
-    cache=False
     items = db.GqlQuery(
           "SELECT * from PersonData " +
           "WHERE data_set = :1 " + 
@@ -170,7 +169,31 @@ class FootprintsDataSetHandler(BaseRequestHandler):
 
 class FootprintsGraphHandler(BaseRequestHandler):
   def get(self,key=''):
-    self.generate('footprints_graph.html')
+    items = db.GqlQuery(
+          "SELECT * from PersonData " +
+          "ORDER BY created")
+    x_set = []
+    y_set = []
+    g_colors = []
+    genders = []
+    ages = []
+    for item in items:
+      x_set.append(item.foot_length)
+      y_set.append(item.height) 
+      if 'male' == item.gender:
+        g_colors.append('5555aa')
+      if 'female' == item.gender:
+        g_colors.append('aa5555')
+      ages.append(item.age)
+      genders.append(item.gender)
+    data = matfunc.polyfit((x_set,y_set),1)
+    self.generate('footprints_graph.html', {
+      'data':data,
+      'x_set':','.join([str(x*2.5) for x in x_set]),
+      'y_set':','.join([str(y/2.5) for y in y_set]),
+      'gender_colors':'|'.join(g_colors),
+      'genders':'|'.join(genders)
+      })
 
 def main():
   application = webapp.WSGIApplication([

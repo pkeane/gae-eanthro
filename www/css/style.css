@@ -171,7 +171,7 @@ ol li {
 }
 
 #data_table tr.highlight td {
-  background-color: #ffc;
+  background-color: #ff9;
 }
 
 #data_form  table {
@@ -236,3 +236,7 @@ form.create_set input[type="text"] {
 	opacity: 0.9;
 }
 
+form.left {
+  float: left;
+  margin-right: 20px;
+}
