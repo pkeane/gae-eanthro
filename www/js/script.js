@@ -190,13 +190,14 @@ Dase.initFormDelete = function() {
 };
 
 Dase.initDeletePersonData = function() {
-	$('#data_form').find("a[class='delete']").click(function() {
+	$('#data_table').find("a[class='delete']").click(function() {
+		$(this).parents('tr').addClass('highlight');
 		if (confirm('are you sure?')) {
 			var del_o = {
 				'url': $(this).attr('href'),
 				'type':'DELETE',
 				'success': function() {
-          Dase.initDataSet();
+					Dase.initDataSet();
 				},
 				'error': function() {
 					alert('sorry, cannot delete');
@@ -204,6 +205,7 @@ Dase.initDeletePersonData = function() {
 			};
 			$.ajax(del_o);
 		}
+		$(this).parents('tr').removeClass('highlight');
 		return false;
 	});
 };
