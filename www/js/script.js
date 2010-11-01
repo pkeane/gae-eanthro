@@ -124,6 +124,7 @@ Dase.initDataSet = function() {
       }
       table.attach(document.getElementById('data_table'));
       Dase.initDeletePersonData();
+	  $('#ajaxMsg').hide();
     },
     'error': function() {
       alert('sorry, cannot retrieve data set');
@@ -149,7 +150,8 @@ Dase.initDataForm = function() {
 			alert(errors);
 			Dase.initForms();
 			return false;
-    }
+		}
+		$('#ajaxMsg').show();
     var post_o = {
       'url': window.location.href,
     'data':$(this).serialize(),

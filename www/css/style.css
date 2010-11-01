@@ -215,3 +215,20 @@ form.create_set {
 form.create_set input[type="text"] {
   width: 400px;
 }
+
+#ajaxMsg {
+	background-color: #fff1a8;
+	width: 10%;
+	text-align: center;
+	padding: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	color: #000;
+	position: fixed;
+	top: 2px;
+	left: 40%;
+	filter:alpha(opacity=90);
+	-moz-opacity:0.9;
+	opacity: 0.9;
+}
+
