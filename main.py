@@ -24,6 +24,31 @@ from google.appengine.ext.webapp.util import login_required
 # Set to true if we want to have our webapp print stack traces, etc
 _DEBUG = True
 
+SAMPLE_DATA = """
+female,30,24,177,39
+female,4,15.5,99.1,15
+male,2,13,87,4
+male,16,27,173,34
+male,20,28.6,177,36
+female,18,23,155,26
+female,45,20.3,170,28
+male,6,17.5,110,16
+female,10,23,137,21
+male,8,18,131,18
+female,14,16.5,161,22
+male,15,26.8,165,26
+female,23,19.1,164,24
+male,19,30.4,176,36
+female,27,22,173,30
+female,7,19.1,124,18
+male,10,15,132,18
+female,10,22.4,138,22
+male,21,29,180,46
+male,25,28.3,178,41
+female,25,23,155,25
+"""
+
+
 def rfc3339():
   """
     Format a date the way Atom likes it (RFC3339)
@@ -129,6 +154,26 @@ class FootprintsDataSetJsonHandler(BaseRequestHandler):
     self.response.out.write(json.encode(set))
     self.response.headers.add_header("Content-Type","application/json")
 
+class FootprintsDataSetSamplerHandler(BaseRequestHandler):
+  def post(self,key=''):
+    data_set = DataSet.get(key)
+    for row in SAMPLE_DATA.split("\n"):
+      if row:
+        [gender,age,foot_length,height,stride_length] = row.strip().split(',')
+        pd = PersonData(
+            created_by = users.GetCurrentUser(),
+            gender=gender,
+            age=int(age),
+            foot_length=float(foot_length),
+            stride_length=float(stride_length),
+            height=float(height),
+            data_set=data_set
+           )
+        pd.put()
+    self.redirect('/exercise/footprints/data_set/'+key)
+
+
+
 class FootprintsDataSetHandler(BaseRequestHandler):
   def get(self,key=''):
     data_set = DataSet.get(key);
@@ -201,6 +246,7 @@ def main():
     ('/item/(.*)', ItemHandler),
     ('/exercise/footprints', FootprintsHandler),
     ('/exercise/footprints/data_set/(.*).json', FootprintsDataSetJsonHandler),
+    ('/exercise/footprints/data_set/(.*)/sampler', FootprintsDataSetSamplerHandler),
     ('/exercise/footprints/data_set/(.*)', FootprintsDataSetHandler),
     ('/exercise/footprints/data_sets', FootprintsDataSetsHandler),
     ('/exercise/footprints/graph', FootprintsGraphHandler),
