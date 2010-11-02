@@ -218,12 +218,18 @@ class FootprintsGraphHandler(BaseRequestHandler):
           "SELECT * from PersonData " +
           "ORDER BY created")
     x_set = []
+    x2_set = []
     y_set = []
+    y2_set = []
     g_colors = []
     genders = []
     ages = []
     for item in items:
       x_set.append(item.foot_length)
+      if (item.stride_length):
+        x2_set.append(item.stride_length)
+        y2_set.append(item.height) 
+
       y_set.append(item.height) 
       if 'male' == item.gender:
         g_colors.append('5555aa')
@@ -231,11 +237,28 @@ class FootprintsGraphHandler(BaseRequestHandler):
         g_colors.append('aa5555')
       ages.append(item.age)
       genders.append(item.gender)
-    data = matfunc.polyfit((x_set,y_set),1)
+    [slope,intercept] = matfunc.polyfit((x_set,y_set),1)
+    x_set.append(0)
+    y_set.append(intercept)
+    x_set.append(40)
+    y_set.append((40*slope)+intercept)
+    [slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
+    x2_set.append(0)
+    y2_set.append(intercept2)
+    x2_set.append(50)
+    y2_set.append((50*slope2)+intercept2)
+
     self.generate('footprints_graph.html', {
-      'data':data,
-      'x_set':','.join([str(x*2.5) for x in x_set]),
-      'y_set':','.join([str(y/2.5) for y in y_set]),
+      'dots_shown':len(x_set)-3,
+      'line_start':len(x_set)-2,
+      'line_end':len(x_set),
+      'x_set':','.join([str(x) for x in x_set]),
+      'y_set':','.join([str(y) for y in y_set]),
+      'dots_shown2':len(x2_set)-3,
+      'line_start2':len(x2_set)-2,
+      'line_end2':len(x2_set),
+      'x2_set':','.join([str(x) for x in x2_set]),
+      'y2_set':','.join([str(y) for y in y2_set]),
       'gender_colors':'|'.join(g_colors),
       'genders':'|'.join(genders)
       })

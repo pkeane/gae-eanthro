@@ -11,42 +11,42 @@
 {% block content %}
 <h2>Footprints Exercise: Data Set "{{ data_set.name }}"</h2>
 <form id="data_form" method="post">
-	<table id="data_form_table">
-		<tr>
-			<th>Gender</th>
-			<th class="age">Age</th>
-			<th>Foot Length (cm)</th>
-			<th>Height (cm)</th>
-			<th>Stride Length (cm)</th>
-			<th></th>
-		</tr>
-		<tr>
-			<th class="gender">
-                <input type="radio" name="gender" value="female"><span class="radiolabel">F</span> 
-                <input type="radio" name="gender" value="male"><span class="radiolabel">M </span>
-			</th>
-			<th class="age">
-				<input type="text" name="age"> 
-			</th>
-			<th>
-				<input type="text" name="foot_length"> 
-			</th>
-			<th>
-				<input type="text" name="height"> 
-			</th>
-			<th>
-				<input type="text" name="stride_length"> 
-			</th>
-			<th>
-				<input type="submit" value="submit!"> 
-			</th>
-		</tr>
-	</table>
+  <table id="data_form_table">
+    <tr>
+      <th>Gender</th>
+      <th class="age">Age</th>
+      <th>Foot Length (cm)</th>
+      <th>Height (cm)</th>
+      <th>Stride Length (cm)</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th class="gender">
+        <input type="radio" name="gender" value="female"><span class="radiolabel">F</span> 
+        <input type="radio" name="gender" value="male"><span class="radiolabel">M </span>
+      </th>
+      <th class="age">
+        <input type="text" name="age"> 
+      </th>
+      <th>
+        <input type="text" name="foot_length"> 
+      </th>
+      <th>
+        <input type="text" name="height"> 
+      </th>
+      <th>
+        <input type="text" name="stride_length"> 
+      </th>
+      <th>
+        <input type="submit" value="submit!"> 
+      </th>
+    </tr>
+  </table>
 </form>
+<div id="data_table">
+</div>
 <form method="post" action="exercise/footprints/data_set/{{data_set.key}}/sampler">
   <input type="submit" value="add sample data">
 </form>
-	<div id="data_table">
-	</div>
 
 {% endblock %}

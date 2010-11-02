@@ -6,8 +6,7 @@
 When the measurements are measurements are graphed, you will see a trend in the data that correlates the relationship between foot length and height, and stride length and height.  Note that individuals with longer strides and longer feet appear to be taller than those individuals with shorter feet and shorter strides.  The foot length and stride length of the Laetoli footprints can be measured and plotted as well.  From this data, an estimate can be made for the height of the individuals who made the tracks at Laetoli, answering the question "How tall were the Australolpithecines?"  
 </p>
 
-{% for d in data %}
-{{d}}
-{% endfor %}
-<img src="http://chart.apis.google.com/chart?cht=s&amp;chd=t:{{x_set}}|{{y_set}}&chs=650x300&chco={{gender_colors}}">
+<img src="http://chart.apis.google.com/chart?cht=s&chd=t:{{x_set}}|{{y_set}}&chs=650x300&xchco={{gender_colors}}&chtt=Correlating+Foot+Length+to+Height&chts=330000,24&chxt=x,x,y,y&chxr=0,0,40|2,50,220&chds=0,40,50,220&chxl=1:|Foot+Length|3:|Height&chxp=1,50|3,50&chm=o,0000FF,0,-1,0|o,aa5555,0,0:{{ dots_shown }}:,10|D,666666,1,{{ line_start }}:{{ line_end }}:,1,-1">
+
+<img src="http://chart.apis.google.com/chart?cht=s&chd=t:{{x2_set}}|{{y2_set}}&chs=650x300&chtt=Correlating+Stride+Length+to+Height&chts=330000,24&chxt=x,x,y,y&chxr=0,0,50|2,50,220&chds=0,50,50,220&chxl=1:|Stride+Length|3:|Height&chxp=1,50|3,50&chm=o,0000FF,0,-1,0|o,aa5555,0,0:{{ dots_shown2 }}:,10|D,666666,1,{{ line_start2 }}:{{ line_end2 }}:,1,-1">
 {% endblock %}

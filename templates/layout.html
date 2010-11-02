@@ -37,6 +37,7 @@
                 {% if user %}
                 {{ user.nickname }} | 
                 <a href="exercise/footprints/data_sets">My Data Sets</a> |
+                <a href="exercise/footprints/graph">View Data Graph</a> |
                 <a href="{{ logout_url|escape }}">Sign out</a>
                 {% else %}
                 <a href="{{ login_url|escape }}">Sign in</a>
