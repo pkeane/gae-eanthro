@@ -242,11 +242,12 @@ class FootprintsGraphHandler(BaseRequestHandler):
     y_set.append(intercept)
     x_set.append(40)
     y_set.append((40*slope)+intercept)
-    [slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
-    x2_set.append(0)
-    y2_set.append(intercept2)
-    x2_set.append(50)
-    y2_set.append((50*slope2)+intercept2)
+    if len(x2_set) > 1:
+      [slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
+      x2_set.append(0)
+      y2_set.append(intercept2)
+      x2_set.append(50)
+      y2_set.append((50*slope2)+intercept2)
 
     self.generate('footprints_graph.html', {
       'dots_shown':len(x_set)-3,
