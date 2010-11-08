@@ -63,7 +63,7 @@ class DataSet(db.Model):
 class PersonData(db.Model):
   data_set = db.ReferenceProperty(DataSet)
   gender = db.StringProperty(required=True)
-  age = db.IntegerProperty(required=True)
+  age = db.IntegerProperty(required=False)
   foot_length = db.FloatProperty(required=True)
   height = db.FloatProperty(required=True)
   stride_length = db.FloatProperty(required=False)
@@ -189,14 +189,17 @@ class FootprintsDataSetHandler(BaseRequestHandler):
   def post(self,key=''):
     data_set = DataSet.get(key);
     gender = self.request.get('gender')
-    age = int(self.request.get('age'))
     foot_length = float(self.request.get('foot_length'))
+    if self.request.get('age'):
+      age = int(self.request.get('age'))
+    else:
+      age = None
     if self.request.get('stride_length'):
       stride_length = float(self.request.get('stride_length'))
     else:
       stride_length = None
     height = float(self.request.get('height'))
-    if (gender and age and foot_length and height):
+    if (gender and foot_length and height):
       pd = PersonData(
           created_by = users.GetCurrentUser(),
           gender=gender,
