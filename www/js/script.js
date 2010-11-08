@@ -97,7 +97,7 @@ Dase.validator.prototype.validate = function(form) {
 Dase.initForms = function() {
 	Dase.forms.data_form = new Dase.validator('data_form');
 	Dase.forms.data_form.add('Gender','gender',true,'string');
-	Dase.forms.data_form.add('Age','age',true,'int',2,100);
+	Dase.forms.data_form.add('Age','age',false,'int',2,100);
 	Dase.forms.data_form.add('Height','height',true,'float',10,250);
 	Dase.forms.data_form.add('Foot Length','foot_length',true,'float',5,50);
 	Dase.forms.data_form.add('Stride Length','stride_length',false,'float',4,100);
