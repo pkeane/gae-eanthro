@@ -263,10 +263,10 @@ class FootprintsGraphHandler(BaseRequestHandler):
     if len(x2_set) > 1:
       #[slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
       [slope2,intercept2] = lsfit(x2_set,y2_set)
-      x2_set.append(0)
-      y2_set.append(intercept2)
-      x2_set.append(150)
-      y2_set.append((150*slope2)+intercept2)
+      x2_set.append(20)
+      y2_set.append((20*slope2)+intercept2)
+      x2_set.append(140)
+      y2_set.append((140*slope2)+intercept2)
 
     self.generate('footprints_graph.html', {
       'slope':slope,
