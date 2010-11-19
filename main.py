@@ -263,8 +263,8 @@ class FootprintsGraphHandler(BaseRequestHandler):
       [slope2,intercept2] = lsfit(x2_set,y2_set)
       x2_set.append(0)
       y2_set.append(intercept2)
-      x2_set.append(50)
-      y2_set.append((50*slope2)+intercept2)
+      x2_set.append(150)
+      y2_set.append((150*slope2)+intercept2)
 
     self.generate('footprints_graph.html', {
       'dots_shown':len(x_set)-3,
