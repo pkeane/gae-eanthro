@@ -254,10 +254,12 @@ class FootprintsGraphHandler(BaseRequestHandler):
       genders.append(item.gender)
     #[slope,intercept] = matfunc.polyfit((x_set,y_set),1)
     [slope,intercept] = lsfit(x_set,y_set)
-    x_set.append(0)
-    y_set.append(intercept)
-    x_set.append(40)
-    y_set.append((40*slope)+intercept)
+    x_set.append(10)
+    y_set.append((10*slope)+intercept)
+    x_set.append(30)
+    y_set.append((30*slope)+intercept)
+    slope2 = 0
+    intercept2 = 0
     if len(x2_set) > 1:
       #[slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
       [slope2,intercept2] = lsfit(x2_set,y2_set)
@@ -267,6 +269,10 @@ class FootprintsGraphHandler(BaseRequestHandler):
       y2_set.append((150*slope2)+intercept2)
 
     self.generate('footprints_graph.html', {
+      'slope':slope,
+      'slope2':slope2,
+      'intercept':intercept,
+      'intercept2':intercept2,
       'dots_shown':len(x_set)-3,
       'line_start':len(x_set)-2,
       'line_end':len(x_set),
