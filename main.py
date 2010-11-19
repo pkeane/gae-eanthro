@@ -48,6 +48,18 @@ male,25,28.3,178,41
 female,25,23,155,25
 """
 
+def lsfit(x_set,y_set):
+  url = 'http://quickdraw.laits.utexas.edu/rserv/lsfit'
+  data = {}
+  data['x'] = x_set
+  data['y'] = y_set
+  json_str = simplejson.dumps(data)
+  result = urlfetch.fetch(url=url,
+      payload=json_str,
+      method=urlfetch.POST,
+      headers={'Content-Type': 'application/json'})
+  answer = simplejson.loads(result.content);
+  return [answer['X'],answer['Intercept']]
 
 def rfc3339():
   """
@@ -240,13 +252,15 @@ class FootprintsGraphHandler(BaseRequestHandler):
         g_colors.append('aa5555')
       ages.append(item.age)
       genders.append(item.gender)
-    [slope,intercept] = matfunc.polyfit((x_set,y_set),1)
+    #[slope,intercept] = matfunc.polyfit((x_set,y_set),1)
+    [slope,intercept] = lsfit(x_set,y_set)
     x_set.append(0)
     y_set.append(intercept)
     x_set.append(40)
     y_set.append((40*slope)+intercept)
     if len(x2_set) > 1:
-      [slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
+      #[slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
+      [slope2,intercept2] = lsfit(x2_set,y2_set)
       x2_set.append(0)
       y2_set.append(intercept2)
       x2_set.append(50)
