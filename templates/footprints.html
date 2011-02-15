@@ -1,29 +1,63 @@
 {% extends "layout.html" %}
 
+{% block head-scripts %}
+	<script src="www/js/instructions.js"></script>
+{% endblock %}
+
+{% block content_header %}
+	<div class="content_header">
+		<h1>Footprints Exercise</h1><h2>On the Track of Prehistoric Humans</h2>
+	</div>
+{% endblock %}
+
 {% block content %}
-<h2>Footprints Exercise</h2>
-<p>
-What do the footprints at Laetoli tell us about the prehistoric hominins that left them behind?
-</p>
-<p>
-YOU can measure and assess the correlation between foot length and stride length versus body height and then use these data along with those from other students to estimate the height of the Laetoli hominins.  You can then use these data to better understand the fossil record.
-</p>
-<ol>
-    <li>Take off your shoes; trace the outline of your foot on a piece of paper, or on the <a href="www/downloads/footmeasure.pdf">downloadable worksheet</a>.
-    <li>Using a ruler or a set of digital calipers, measure your foot length in centimeters: the length from the tip of the hallux, or big toe, to the back of the heel.  
-    <li>Write the results, in centimeters, on your paper.   
-    <li>With your shoes still off, measure your height: from the top of your skull to the bottom of your feet.  For best results, use a medial scale with the height rod.  If a medial scale is not available, you may also stand up straight with your heels and back against a wall.  Draw a line with a pencil to mark the top of your head.  Use the ruler or measuring stick to measure the distance from the floor to the mark on the wall.  Be sure to erase any marks you may have left on the wall.  
-    <li>Write your results, in centimeters, on your paper. 
-</ol>
-<h3>Optional -- Stride Length Exercise</h3>
-<ol>
-    <li>Unroll at least 6 feet of butcher paper and lay it on the floor.  Fill one large basin with finger paint and place it at one end of the unrolled sheet of butcher paper.  Fill a second large basin with water and place it at the opposite end of the butcher paper as the basin with the finger paint.  You may also want to place a chair next to the water basin. 
-    <li>Take off your shoes and step into the basin of finger-paints.  Walk normally for several steps across the butcher paper.  Wash and dry your feet at the end and then use the ruler to measure, in centimeters, the length of your stride: from the tip of your toes on the back foot to the back of the heel on your front foot.
-    <li>Write your results, in centimeters, in the space marked “stride length” in the sheet provided.
-</ol>
-
-<form class="left" method="get" action="exercise/footprints/data_sets">
-  <input type="submit" value="Continue to Create/View a Data Set">
-</form>
-
+	<div class="generic_content">
+		<p>
+		What do the footprints at Laetoli tell us about the prehistoric hominins that left them behind?
+		YOU can measure and assess the correlation between foot length and stride length versus body height and then use these data along with those from other students to estimate the height of the Laetoli hominins.  You can then use these data to better understand the fossil record.
+		</p>
+		<div class="instructions_container clearfix">
+			<div class="step_thumbnails">
+				<ul>
+					<li><img src="www/images/collab_step1_thumb.jpg"/></li>
+					<li><img src="www/images/collab_step2_thumb.jpg"/></li>
+					<li><img src="www/images/collab_step3_thumb.jpg"/></li>
+					<li><img src="www/images/collab_step4_thumb.jpg"/></li>
+					<li><img src="www/images/collab_step5_thumb.jpg"/></li>
+					<li><img src="www/images/collab_step6_thumb.jpg"/></li>
+				</ul>
+			</div>
+			<div class="step_viewer">
+				<div class="step1 selected">
+					<h1>Step 1: </h1>
+					<img src="www/images/collab_step1_full.jpg"/>
+				</div>
+				<div class="step2">
+					<h1>Step 2: </h1>
+					<img src="www/images/collab_step2_full.jpg"/>
+				</div>
+				<div class="step3">
+					<h1>Step 3: </h1>
+					<img src="www/images/collab_step3_full.jpg"/>
+				</div>
+				<div class="step4">
+					<h1>Step 4: </h1>
+					<img src="www/images/collab_step4_full.jpg"/>
+				</div>
+				<div class="step5">
+					<h1>Step 5: </h1>
+					<img src="www/images/collab_step5_full.jpg"/>
+				</div>
+				<div class="step6">
+					<h1>Step 6: </h1>
+					<img src="www/images/collab_step6_full.jpg"/>
+				</div>
+				<button id="previous_step">Previous</button>
+				<button id="next_step">Next</button>
+			</div> <!-- close step_viewer -->
+		</div> <!-- close instructions -->
+		<form class="left" method="get" action="exercise/footprints/data_sets">
+		  <input type="submit" value="Continue to Create/View a Data Set">
+		</form>
+	</div>
 {% endblock %}

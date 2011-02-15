@@ -5,15 +5,12 @@
         <meta charset="utf-8">
         <title>eAnthro Community Lab</title>
 
-        <link rel="stylesheet" href="www/css/base.css">
-        <link rel="stylesheet" href="www/css/style.css">
+		<link rel="stylesheet" type="text/css" href="www/css/text.css" /> 
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/reset/reset-min.css">
+		<link rel="stylesheet" type="text/css" href="www/css/style.css" /> 
         {% block head-links %}{% endblock %}
-
-        <link href='http://fonts.googleapis.com/css?family=Vollkorn&subset=latin' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Cantarell:regular,bold&subset=latin' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Neuton&subset=latin' rel='stylesheet' type='text/css'>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
         <!--
         <script src="www/js/jquery.js"></script>
         <script src="www/js/jquery-ui.js"></script>
@@ -24,37 +21,53 @@
     </head>
     <body>
 		<div id="ajaxMsg" class="hide">Loading...</div>
-        <div id="wordmark">
-            <div id="universityTextWordMark">
-                <a href="http://www.utexas.edu" id="ut">THE UNIVERSITY OF TEXAS AT AUSTIN</a>
-                <a href="http://www.utexas.edu/cola/depts/anthropology" id="dept">DEPARTMENT OF ANTHROPOLOGY</a>
-            </div>
-        </div>
-        <div class="clear"></div>
+		<header>
+			<a href="/"><img title="eAnthro" src="www/images/logo-eanthro-header.png"/></a>
+			<nav>
+				<ul>
+					{% if user %}
+					{{ user.nickname }}
+						<li><a href="exercise/footprints/data_sets">My Data Sets</a></li>
+						<li><a href="exercise/footprints/graph">View Data Graph</a></li>
+						<li><a href="{{ logout_url|escape }}">Sign out</a></li>
+					{% else %}
+						<li><a href="{{ login_url|escape }}">Sign in</a></li>
+					{% endif %}
+				</ul>
+			</nav>
+		</header>
         <div id="container">
-            <div id="header">
-                <h1><a href="/">eAnthro Community Labs</a></h1>
-                {% if user %}
-                {{ user.nickname }} | 
-                <a href="exercise/footprints/data_sets">My Data Sets</a> |
-                <a href="exercise/footprints/graph">View Data Graph</a> |
-                <a href="{{ logout_url|escape }}">Sign out</a>
-                {% else %}
-                <a href="{{ login_url|escape }}">Sign in</a>
-                {% endif %}
-            </div>
-            <div id="main">
+			<div id="content">
                 {% if msg %}<h3 class="msg">{{ msg }}</h3>{% endif %}
+	            {% block content_header %}{% endblock %}
                 {% block content %}default content{% endblock %}
-            </div>
-            <div class="clear"></div>
-            <div id="footer">
-                <div class="brand">
-                    <a href="http://eskeletons.org">eSkeletons</a> |
-                    <a href="http://elucy.org">eLucy.org</a> |
-                    <a href="http://www.laits.utexas.edu/its/"><strong>Liberal Arts</strong> Instructional Technology Services</a>
-                </div>
-            </div>
+			</div> <!-- end content --> 
         </div>
+		<footer>
+			<div>
+				<ul>
+					<li><h2><a href="faq">Frequently Asked Questions</a></h2></li>
+					<li><h2><a href="credits">e-Fossils Production Credits</a></h2></li>
+					<li><a href="http://www.utexas.edu/cola/depts/anthropology/"><img src="www/images/footer_anthropology_link.png"></a></li>
+					<li><a href="http://www.utexas.edu/cola/information-technology/"><img src="www/images/footer_laits_link.png"></a></li>
+					<li><a href="http://www.utexas.edu/"><img src="www/images/footer_utexas_link.png"></a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Learn about the e-Fossils project</h2>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+			</div>
+			<div>
+				<h2>e-Anthro Digital Libraries List</h2>
+				<ul>
+					<li><a href=""><img src="www/images/footer_eanthro_link.png"/></a></li>
+					<li><a href=""><img src="www/images/footer_eforensics_link.png"/></a></li>
+					<li><a href=""><img src="www/images/footer_efossils_link.png"/></a></li>
+					<li><a href=""><img src="www/images/footer_elucy_link.png"/></a></li>
+					<li><a href=""><img src="www/images/footer_eskeletons_link.png"/></a></li>
+				</ul>
+			</div>
+		</footer> <!-- end footer -->
+
     </body>
 </html>

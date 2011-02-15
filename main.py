@@ -58,6 +58,7 @@ def lsfit(x_set,y_set):
       payload=json_str,
       method=urlfetch.POST,
       headers={'Content-Type': 'application/json'})
+  print result
   answer = simplejson.loads(result.content);
   return [answer['gradient'],answer['yintercept'],answer['r']]
 
@@ -253,7 +254,8 @@ class FootprintsGraphHandler(BaseRequestHandler):
       ages.append(item.age)
       genders.append(item.gender)
     #[slope,intercept] = matfunc.polyfit((x_set,y_set),1)
-    [slope,intercept,r] = lsfit(x_set,y_set)
+    #[slope,intercept,r] = lsfit(x_set,y_set)
+    [slope,intercept,r] = [1,2,4] 
     x_set.append(10)
     y_set.append((10*slope)+intercept)
     x_set.append(30)
@@ -265,7 +267,8 @@ class FootprintsGraphHandler(BaseRequestHandler):
     intercept2 = 0
     if len(x2_set) > 1:
       #[slope2,intercept2] = matfunc.polyfit((x2_set,y2_set),1)
-      [slope2,intercept2,r2] = lsfit(x2_set,y2_set)
+      #[slope2,intercept2,r2] = lsfit(x2_set,y2_set)
+      [slope2,intercept2,r2] = [1,2,4] 
       x2_set.append(20)
       y2_set.append((20*slope2)+intercept2)
       x2_set.append(140)
