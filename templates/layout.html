@@ -25,14 +25,8 @@
 			<a href="/"><img title="eAnthro" src="www/images/logo-eanthro-header.png"/></a>
 			<nav>
 				<ul>
-					{% if user %}
-					{{ user.nickname }}
-						<li><a href="exercise/footprints/data_sets">My Data Sets</a></li>
-						<li><a href="exercise/footprints/graph">View Data Graph</a></li>
-						<li><a href="{{ logout_url|escape }}">Sign out</a></li>
-					{% else %}
-						<li><a href="{{ login_url|escape }}">Sign in</a></li>
-					{% endif %}
+					<!-- <li><a href="exercise/footprints/data_sets">My Data Sets</a></li> -->
+					<li><a href="exercise/footprints/graph">View Data Graph</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -45,7 +39,7 @@
         </div>
 		<footer>
 			<div>
-				<ul>
+				<ul class="first_footer_section">
 					<li><h2><a href="faq">Frequently Asked Questions</a></h2></li>
 					<li><h2><a href="credits">e-Fossils Production Credits</a></h2></li>
 					<li><a href="http://www.utexas.edu/cola/depts/anthropology/"><img src="www/images/footer_anthropology_link.png"></a></li>
@@ -59,12 +53,12 @@
 			</div>
 			<div>
 				<h2>e-Anthro Digital Libraries List</h2>
-				<ul>
+				<ul class="footer_images">
 					<li><a href=""><img src="www/images/footer_eanthro_link.png"/></a></li>
 					<li><a href=""><img src="www/images/footer_eforensics_link.png"/></a></li>
-					<li><a href=""><img src="www/images/footer_efossils_link.png"/></a></li>
-					<li><a href=""><img src="www/images/footer_elucy_link.png"/></a></li>
-					<li><a href=""><img src="www/images/footer_eskeletons_link.png"/></a></li>
+					<li><a href="http://www.efossils.org"><img src="www/images/footer_efossils_link.png"/></a></li>
+					<li><a href="http://www.elucy.org"><img src="www/images/footer_elucy_link.png"/></a></li>
+					<li><a href="http://www.eskeletons.org"><img src="www/images/footer_eskeletons_link.png"/></a></li>
 				</ul>
 			</div>
 		</footer> <!-- end footer -->

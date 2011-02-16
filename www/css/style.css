@@ -20,9 +20,9 @@ div#content{
 	margin:auto;
 	background-color:#fff;
 	font-family:trebuchet ms;
-	-webkit-box-shadow:2px 2px 5px #63625b;
-	-moz-box-shadow:2px 2px 5px #63625b;
-	box-shadow:2px 2px 5px #63625b;
+	-webkit-box-shadow:3px 5px 5px #63625b;
+	-moz-box-shadow:3px 5px 5px #63625b;
+	box-shadow:3px 5px 5px #63625b;
 }
 
 header{
@@ -53,6 +53,9 @@ header nav ul li{
 header nav ul li a{
 	text-shadow: #1f1714 -1px -1px 1px;
 }
+header nav ul li a:hover{
+	color:white;
+}
 
 footer{
 	display:block;
@@ -67,14 +70,30 @@ footer div{
 	padding:10px 10px 20px 10px;
 	float:left;
 }
+footer div ul.first_footer_section li img{
+	padding-top:15px;
+}
+
 footer div h2{
 	font-size:1.2em;
 	padding-bottom:5px;
 	font-family:palatino;
 	font-weight:bold;
+	text-shadow: #1f1714 -1px -1px 1px;
 }
 footer div a{
-	color:#a9a48e;
+	color:#a99d7d;
+/*	color:#a9a48e; */
+	text-decoration:none;
+}
+footer div a:hover{
+	color:white;
+}
+footer img{
+	opacity:.7;
+}
+footer img:hover{
+	opacity:1;
 }
 div.content_header{
 	background-color:#1d3444;
@@ -84,6 +103,8 @@ div.content_header{
 }
 div.content_header h1{
 	display:inline;
+	font-family:palatino;
+	font-size:1.2em;
 }
 div.content_header h2{
 	display:inline;
@@ -93,7 +114,6 @@ div.generic_content{
 	padding:18px;
 }
 div.front_page_text{
-	text-align: justify;
 	padding:18px 36px;
 	text-indent: 1.5em;
 	-moz-column-count: 2;
@@ -116,6 +136,12 @@ div.front_page_text button{
     font-size:1.4em;
     cursor:pointer;
 	margin-top:15px;
+}
+
+div.front_page_text button:hover{
+	color:gray;
+}
+div.front_page_text a{
 	margin-left:25%;
 }
 
@@ -134,9 +160,27 @@ div.step_thumbnails{
 }
 div.step_thumbnails ul li{
 	cursor:pointer;
+	padding-top:20px;
+	opacity:.5;
+}
+div.step_thumbnails ul li:first-child{
+	padding-top:0px;
+}
+div.step_thumbnails ul li.selected{
+	opacity:1;
 }
 div.step_viewer{
 	float:left;
+	width:730px;
+}
+div.step_viewer h1{
+	font-size:1.5em;
+	padding-bottom:10px;
+}
+div.step_viewer img{
+	padding-top:10px;
+	width:100%;
+
 }
 div.step_viewer > div{
 	display:none;
@@ -157,6 +201,10 @@ div.step_viewer button{
     font-size:1.4em;
     cursor:pointer;
 	margin-top:20px;
+}
+div.step_viewer button:hover{
+	color:gray;
+
 }
 
 #previouse_step{
@@ -182,9 +230,30 @@ div.footprint_graph p.data_explanation{
 	-webkit-column-width: 50%;
 	-webkit-column-gap: 2em;
 }
+
+div.credits{
+	padding:20px;
+}
+div.credits h2{
+	font-size:1em;
+	padding:10px 0px;
+}
+div.credits h2 span{
+	font-size:1.2em;
+
+}
+
+
+
+
+
+
+
+
 .hide{
 	display:none;
 }
+
 /* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
 
 .clearfix:after {

@@ -19,45 +19,53 @@
 		<div class="instructions_container clearfix">
 			<div class="step_thumbnails">
 				<ul>
-					<li><img src="www/images/collab_step1_thumb.jpg"/></li>
-					<li><img src="www/images/collab_step2_thumb.jpg"/></li>
-					<li><img src="www/images/collab_step3_thumb.jpg"/></li>
-					<li><img src="www/images/collab_step4_thumb.jpg"/></li>
-					<li><img src="www/images/collab_step5_thumb.jpg"/></li>
-					<li><img src="www/images/collab_step6_thumb.jpg"/></li>
+					<li class="step1 selected"><img src="www/images/collab_step1_thumb.jpg"/></li>
+					<li class="step2"><img src="www/images/collab_step2_thumb.jpg"/></li>
+					<li class="step3"><img src="www/images/collab_step3_thumb.jpg"/></li>
+					<li class="step4"><img src="www/images/collab_step4_thumb.jpg"/></li>
+					<li class="step5"><img src="www/images/collab_step5_thumb.jpg"/></li>
+					<li class="step6"><img src="www/images/collab_step6_thumb.jpg"/></li>
 				</ul>
 			</div>
 			<div class="step_viewer">
 				<div class="step1 selected">
 					<h1>Step 1: </h1>
+					<p> Take off your shoes, trace the outline of your foot on the reverse of this sheet, and measure the total length of your foot with the provided ruler in cm.  Record your first name, age, and today’s date on the form.  Circle if you are male or female, and write your foot measurement in the space marked "Foot Length (cm)".</p>
 					<img src="www/images/collab_step1_full.jpg"/>
 				</div>
 				<div class="step2">
 					<h1>Step 2: </h1>
+					<p>Measure your height in cm on the scale and record this measurement in the space marked "Stature (cm)".</p>
 					<img src="www/images/collab_step2_full.jpg"/>
 				</div>
 				<div class="step3">
 					<h1>Step 3: </h1>
+					<p>Step into the basin of fingerpaint (or here, toepaint!).</p>
 					<img src="www/images/collab_step3_full.jpg"/>
 				</div>
 				<div class="step4">
 					<h1>Step 4: </h1>
+					<p>Walk carefully and normally for several steps across the butcher paper.</p>
 					<img src="www/images/collab_step4_full.jpg"/>
 				</div>
 				<div class="step5">
 					<h1>Step 5: </h1>
+					<p>Wash and dry your feet at the end, and then use the ruler to measure the length of your stride in cm.  You stride is the distance between the back of your heel on one step and the back of your heel on the second step of the same foot.  For example, take three steps starting with your right foot, and then measure the distance between your first step taken with the right foot and the second step taken with the right foot.  Record this measurement in the space marked "Stride Length (cm)".</p>
 					<img src="www/images/collab_step5_full.jpg"/>
 				</div>
 				<div class="step6">
 					<h1>Step 6: </h1>
+					<p>Plot your data on the graph by entering the information on the provided form.  On the graph, <b>RED</b> represents girls and <b>BLUE</b> represents boys.</p>
 					<img src="www/images/collab_step6_full.jpg"/>
 				</div>
 				<button id="previous_step">Previous</button>
 				<button id="next_step">Next</button>
 			</div> <!-- close step_viewer -->
 		</div> <!-- close instructions -->
+		<!--
 		<form class="left" method="get" action="exercise/footprints/data_sets">
 		  <input type="submit" value="Continue to Create/View a Data Set">
 		</form>
+		-->
 	</div>
 {% endblock %}

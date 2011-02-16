@@ -58,7 +58,6 @@ def lsfit(x_set,y_set):
       payload=json_str,
       method=urlfetch.POST,
       headers={'Content-Type': 'application/json'})
-  print result
   answer = simplejson.loads(result.content);
   return [answer['gradient'],answer['yintercept'],answer['r']]
 
@@ -114,10 +113,16 @@ class ItemHandler(BaseRequestHandler):
     self.response.headers.add_header("Content-Type","text/plain")
 
 class HomeHandler(BaseRequestHandler):
-  @login_required
   def get(self):
-    user = users.GetCurrentUser()
     self.generate('home.html')
+
+class CreditsHandler(BaseRequestHandler):
+  def get(self):
+    self.generate('credits.html')
+
+class FaqHandler(BaseRequestHandler):
+  def get(self):
+    self.generate('faq.html')
 
 class IndexHandler(BaseRequestHandler):
   def get(self):
@@ -298,6 +303,8 @@ class FootprintsGraphHandler(BaseRequestHandler):
 def main():
   application = webapp.WSGIApplication([
     ('/', HomeHandler),
+    ('/credits', CreditsHandler),
+    ('/faq', FaqHandler),
     ('/item/(.*)', ItemHandler),
     ('/exercise/footprints', FootprintsHandler),
     ('/exercise/footprints/data_set/(.*).json', FootprintsDataSetJsonHandler),
