@@ -10,7 +10,8 @@
                 var target = $$.css('backgroundImage').replace(/^url|[\(\)'"]/g, '');
 
                 // nice long chain: wrap img element in span
-                $$.wrap('<span style="position: relative;"></span>')
+//                $$.wrap('<span style="position: relative;"></span>')
+                $$.wrap('<div class="banner_container"></div>')
                     // change selector to parent - i.e. newly created span
                     .parent()
                     // prepend a new image inside the span

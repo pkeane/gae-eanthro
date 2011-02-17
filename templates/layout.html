@@ -21,15 +21,15 @@
     </head>
     <body>
 		<div id="ajaxMsg" class="hide">Loading...</div>
-		<header>
+		<div class="header">
 			<a href="/"><img title="eAnthro" src="www/images/logo-eanthro-header.png"/></a>
-			<nav>
+			<div class="nav">
 				<ul>
 					<!-- <li><a href="exercise/footprints/data_sets">My Data Sets</a></li> -->
 					<li><a href="exercise/footprints/graph">View Data Graph</a></li>
 				</ul>
-			</nav>
-		</header>
+			</div>
+		</div>
         <div id="container">
 			<div id="content">
                 {% if msg %}<h3 class="msg">{{ msg }}</h3>{% endif %}
@@ -37,9 +37,9 @@
                 {% block content %}default content{% endblock %}
 			</div> <!-- end content --> 
         </div>
-		<footer>
-			<div>
-				<ul class="first_footer_section">
+		<div class="footer">
+			<div class="first_footer_section">
+				<ul>
 					<li><h2><a href="faq">Frequently Asked Questions</a></h2></li>
 					<li><h2><a href="credits">e-Fossils Production Credits</a></h2></li>
 					<li><a href="http://www.utexas.edu/cola/depts/anthropology/"><img src="www/images/footer_anthropology_link.png"></a></li>
@@ -51,7 +51,7 @@
 				<h2>Learn about the e-Fossils project</h2>
 				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
 			</div>
-			<div>
+			<div class="last_footer_section">
 				<h2>e-Anthro Digital Libraries List</h2>
 				<ul class="footer_images">
 					<li><a href=""><img src="www/images/footer_eanthro_link.png"/></a></li>
@@ -61,7 +61,7 @@
 					<li><a href="http://www.eskeletons.org"><img src="www/images/footer_eskeletons_link.png"/></a></li>
 				</ul>
 			</div>
-		</footer> <!-- end footer -->
+		</div> <!-- end footer -->
 
     </body>
 </html>

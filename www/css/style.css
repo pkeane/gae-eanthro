@@ -25,39 +25,39 @@ div#content{
 	box-shadow:3px 5px 5px #63625b;
 }
 
-header{
+div.header{
 	display:block;
 	height:100px;
 	width:960px;
 	margin:auto;
 	position:relative;
 }
-header a{
+div.header a{
 	color:#a99d7d;
 	font-family:palatino;
 	font-size:1.3em;
 	text-decoration:none;
 }
-header img{
+div.header img{
 	padding-top:30px;
 	float:left;
 }
-header nav{
+div.header div.nav{
 	padding-top:65px;
 	float:right;
 }
-header nav ul li{
+div.header div.nav ul li{
 	display:inline;
 	padding-left:25px;
 }
-header nav ul li a{
+div.header div.nav ul li a{
 	text-shadow: #1f1714 -1px -1px 1px;
 }
-header nav ul li a:hover{
+div.header div.nav ul li a:hover{
 	color:white;
 }
 
-footer{
+div.footer{
 	display:block;
 	width:960px;
 	margin:auto;
@@ -65,34 +65,40 @@ footer{
 	font-family:trebuchet ms;
 	background-color:#211e17;
 }
-footer div{
-	width:300px;
+div.footer div{
+	width:280px;
 	padding:10px 10px 20px 10px;
 	float:left;
 }
-footer div ul.first_footer_section li img{
+div.footer div.first_footer_section ul li img{
 	padding-top:15px;
 }
+div.first_footer_section{
+	margin-right:20px;
+}
+div.last_footer_section{
+	margin-left:30px;
+}
 
-footer div h2{
+div.footer div h2{
 	font-size:1.2em;
 	padding-bottom:5px;
 	font-family:palatino;
 	font-weight:bold;
 	text-shadow: #1f1714 -1px -1px 1px;
 }
-footer div a{
+div.footer div a{
 	color:#a99d7d;
 /*	color:#a9a48e; */
 	text-decoration:none;
 }
-footer div a:hover{
+div.footer div a:hover{
 	color:white;
 }
-footer img{
+div.footer img{
 	opacity:.7;
 }
-footer img:hover{
+div.footer img:hover{
 	opacity:1;
 }
 div.content_header{
@@ -113,8 +119,15 @@ div.content_header h2{
 div.generic_content{
 	padding:18px;
 }
+div.banner_container{
+	position:relative;
+	height:300px;
+}
+div.banner_container img{
+	position:absolute;
+}
 div.front_page_text{
-	padding:18px 36px;
+	padding:18px 36px;  
 	text-indent: 1.5em;
 	-moz-column-count: 2;
 	-moz-column-width: 50%;
@@ -123,7 +136,7 @@ div.front_page_text{
 	-webkit-column-width: 50%;
 	-webkit-column-gap: 2em;
 }
-div.front_page_text button{
+div.front_page_text input[type="submit"]{
     background: -webkit-gradient(linear, left top, left bottom, from(#e6e1db), to(#bebbac));
     background: -moz-linear-gradient(top,  #e6e1db,  #bebbac);
     border: 1px solid #85857b;
@@ -136,13 +149,11 @@ div.front_page_text button{
     font-size:1.4em;
     cursor:pointer;
 	margin-top:15px;
+	margin-left:25%;
 }
 
-div.front_page_text button:hover{
+div.front_page_text input[type="submit"]:hover{
 	color:gray;
-}
-div.front_page_text a{
-	margin-left:25%;
 }
 
 div.generic_container{
