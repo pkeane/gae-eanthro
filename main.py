@@ -152,6 +152,26 @@ class FootprintsDataSetsHandler(BaseRequestHandler):
     set.put()
     self.redirect('/exercise/footprints/data_sets')
 
+class FootprintsDataSetsJsonHandler(BaseRequestHandler):
+  def get(self):
+    items = db.GqlQuery(
+          "SELECT * from PersonData " +
+          "ORDER BY created")
+    set = []
+    for item in items:
+      inner = {}
+      inner['gender'] = item.gender
+      inner['age'] = item.age
+      inner['foot_length'] = item.foot_length
+      inner['height'] = item.height
+      inner['stride_length'] = item.stride_length
+      inner['created'] = item.created
+      inner['created_by'] = item.created_by
+      inner['data_set'] = item.data_set 
+      set.append(inner)
+    self.response.out.write(json.encode(set))
+    self.response.headers.add_header("Content-Type","application/json")
+
 class FootprintsDataSetJsonHandler(BaseRequestHandler):
   def get(self,key=''):
     data_set = DataSet.get(key);
@@ -189,8 +209,6 @@ class FootprintsDataSetSamplerHandler(BaseRequestHandler):
            )
         pd.put()
     self.redirect('/exercise/footprints/data_set/'+key)
-
-
 
 class FootprintsDataSetHandler(BaseRequestHandler):
   def get(self,key=''):
@@ -307,6 +325,7 @@ def main():
     ('/faq', FaqHandler),
     ('/item/(.*)', ItemHandler),
     ('/exercise/footprints', FootprintsHandler),
+    ('/exercise/footprints/data_sets.json', FootprintsDataSetsJsonHandler),
     ('/exercise/footprints/data_set/(.*).json', FootprintsDataSetJsonHandler),
     ('/exercise/footprints/data_set/(.*)/sampler', FootprintsDataSetSamplerHandler),
     ('/exercise/footprints/data_set/(.*)', FootprintsDataSetHandler),
